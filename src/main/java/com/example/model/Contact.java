@@ -6,8 +6,7 @@ import javax.persistence.*;
  * Created by ttomaka on 22.03.2017.
  */
 @Entity
-@Table
-public class Kontakt {
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -16,10 +15,10 @@ public class Kontakt {
     private String value;
 
     @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @JoinColumn(name = "user_id")
+    private Person user;
 
-    
+
     public String getType() {
         return type;
     }
@@ -36,11 +35,11 @@ public class Kontakt {
         this.value = value;
     }
 
-    public User getUser() {
+    public Person getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Person user) {
         this.user = user;
     }
 }
