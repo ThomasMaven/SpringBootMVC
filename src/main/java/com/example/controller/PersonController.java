@@ -2,9 +2,9 @@ package com.example.controller;
 
 import com.example.model.Contact;
 import com.example.model.Person;
-import com.example.repository.ContactRepository;
 import com.example.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("api/v1/")
-public class ContaktController {
+public class PersonController {
 
     @Autowired
     private PersonRepository personRepository;
@@ -25,5 +25,7 @@ public class ContaktController {
     public List<Person> personList() {
         return personRepository.findAll();
     }
+
+
 
 }
