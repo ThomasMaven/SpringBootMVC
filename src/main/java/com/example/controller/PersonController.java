@@ -1,13 +1,10 @@
 package com.example.controller;
 
-import com.example.model.Contact;
 import com.example.model.Person;
 import com.example.repository.PersonRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,16 +13,39 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("api/v1/")
-public class PersonController {
+class PersonController {
 
     @Autowired
     private PersonRepository personRepository;
 
-    @RequestMapping(value = "personList", method = RequestMethod.GET)
+    @RequestMapping(value = "person", method = RequestMethod.GET)
     public List<Person> personList() {
         return personRepository.findAll();
     }
 
+    @RequestMapping(value = "person", method = RequestMethod.POST)
+    public Person createPerson(@RequestBody Person person) {
+        return personRepository.saveAndFlush(person);
+    }
+
+    @RequestMapping(value = "person/{id}", method = RequestMethod.GET)
+    public Person getPerson(@PathVariable Long id) {
+        return personRepository.findOne(id);
+    }
+
+    @RequestMapping(value = "person/{id}", method = RequestMethod.PUT)
+    public Person updateContact(@PathVariable Long id, @RequestBody Person person) {
+        Person existingPerson = personRepository.findOne(id);
+        BeanUtils.copyProperties(person, existingPerson);
+        return personRepository.saveAndFlush(existingPerson);
+    }
+
+    @RequestMapping(value = "person/{id}", method = RequestMethod.DELETE)
+    public Person deletePerson(@PathVariable Long id) {
+        Person personToDelete = personRepository.findOne(id);
+        personRepository.delete(personToDelete);
+        return personToDelete;
+    }
 
 
 }
