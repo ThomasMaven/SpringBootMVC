@@ -6,20 +6,27 @@ import javax.persistence.*;
  * Created by ttomaka on 22.03.2017.
  */
 @Entity
-@Table
-public class Kontakt {
+public class Contact {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String type;
     private String value;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @OneToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "user_id")
+    private Person person;
 
-    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getType() {
         return type;
     }
@@ -36,11 +43,11 @@ public class Kontakt {
         this.value = value;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
