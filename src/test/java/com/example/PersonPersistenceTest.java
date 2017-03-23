@@ -30,7 +30,7 @@ public class PersonPersistenceTest {
         Contact c = new Contact();
         c.setValue("A");
         c.setType("B");
-        p.addContact(c);
+        //p.addContact(c);
 
         personRepository.saveAndFlush(p);
 

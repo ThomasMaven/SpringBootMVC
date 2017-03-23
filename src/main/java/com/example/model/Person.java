@@ -1,7 +1,9 @@
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,13 +20,13 @@ public class Person {
     private String surname;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
-    private List<Contact> contacts = new ArrayList<>();
-
-
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user_id")
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 //    private List<Contact> contacts;
+    @JsonIgnore
+//    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Contact> contacts;
 
 
     public Long getId() {
@@ -56,17 +58,6 @@ public class Person {
 
     public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
-    }
-
-    public void addContact(Contact c) {
-        this.contacts.add(c);
-        c.setPerson(this);
-
-    }
-
-    @PrePersist
-    public void setUpReferences() {
-        contacts.stream().forEach(c  -> c.setPerson(this));
     }
 
 }
