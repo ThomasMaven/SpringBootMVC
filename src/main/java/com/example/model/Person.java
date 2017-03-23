@@ -1,7 +1,5 @@
 package com.example.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,12 +18,8 @@ public class Person {
     private String surname;
 
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
-//    private List<Contact> contacts;
-    @JsonIgnore
-//    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private List<Contact> contacts;
 
 

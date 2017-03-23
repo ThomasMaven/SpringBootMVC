@@ -1,5 +1,7 @@
 package com.example.model;
 
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+
 import javax.persistence.*;
 
 /**
@@ -15,13 +17,6 @@ public class Contact {
     private String type;
     private String value;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    private Person person;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Person person;
 
     public Long getId() {
         return id;
@@ -47,11 +42,5 @@ public class Contact {
         this.value = value;
     }
 
-    public Person getPerson() {
-        return person;
-    }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 }
