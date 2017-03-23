@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.model.Contact;
 import com.example.model.Person;
 import com.example.repository.PersonRepository;
 import org.springframework.beans.BeanUtils;
@@ -48,5 +49,24 @@ class PersonController {
         return personToDelete;
     }
 
+    @RequestMapping(value = "person/{id}/addContact", method = RequestMethod.POST)
+    public Person addContact(@PathVariable Long id, @RequestBody Contact contact) {
+        Person personToUpdate = personRepository.findOne(id);
+        personToUpdate.getContacts().add(contact);
+        return personRepository.saveAndFlush(personToUpdate);
+    }
 
+    @RequestMapping(value = "person/{id}/setName/{name}", method = RequestMethod.GET)
+    public Person setName(@PathVariable Long id, @PathVariable String name) {
+        Person personToUpdate = personRepository.findOne(id);
+        personToUpdate.setName(name);
+        return personRepository.saveAndFlush(personToUpdate);
+    }
+
+    @RequestMapping(value = "person/{id}/setSurname/{surname}", method = RequestMethod.GET)
+    public Person setSurname(@PathVariable Long id, @PathVariable String surname) {
+        Person personToUpdate = personRepository.findOne(id);
+        personToUpdate.setSurname(surname);
+        return personRepository.saveAndFlush(personToUpdate);
+    }
 }
