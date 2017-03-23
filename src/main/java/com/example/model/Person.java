@@ -1,6 +1,8 @@
 package com.example.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ttomaka on 22.03.2017.
@@ -14,6 +16,15 @@ public class Person {
     private Long id;
     private String name;
     private String surname;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
+    private List<Contact> contacts = new ArrayList<>();
+
+
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private List<Contact> contacts;
 
 
     public Long getId() {
@@ -39,6 +50,23 @@ public class Person {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+    public List<Contact> getContacts() {
+        return contacts;
+    }
 
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public void addContact(Contact c) {
+        this.contacts.add(c);
+        c.setPerson(this);
+
+    }
+
+    @PrePersist
+    public void setUpReferences() {
+        contacts.stream().forEach(c  -> c.setPerson(this));
+    }
 
 }

@@ -15,9 +15,13 @@ public class Contact {
     private String type;
     private String value;
 
-    @OneToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Person person;
+
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private Person person;
 
     public Long getId() {
         return id;

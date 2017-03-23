@@ -25,6 +25,7 @@ class PersonController {
 
     @RequestMapping(value = "person", method = RequestMethod.POST)
     public Person createPerson(@RequestBody Person person) {
+
         return personRepository.saveAndFlush(person);
     }
 
