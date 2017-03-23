@@ -1,6 +1,8 @@
 package com.example.model;
 
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by ttomaka on 22.03.2017.
@@ -14,6 +16,11 @@ public class Person {
     private Long id;
     private String name;
     private String surname;
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private List<Contact> contacts;
 
 
     public Long getId() {
@@ -39,6 +46,12 @@ public class Person {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+    public List<Contact> getContacts() {
+        return contacts;
+    }
 
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
 
 }

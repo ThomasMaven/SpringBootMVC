@@ -1,5 +1,7 @@
 package com.example.model;
 
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+
 import javax.persistence.*;
 
 /**
@@ -15,9 +17,6 @@ public class Contact {
     private String type;
     private String value;
 
-    @OneToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "user_id")
-    private Person person;
 
     public Long getId() {
         return id;
@@ -43,11 +42,5 @@ public class Contact {
         this.value = value;
     }
 
-    public Person getPerson() {
-        return person;
-    }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 }
