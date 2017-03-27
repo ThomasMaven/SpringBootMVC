@@ -1,8 +1,15 @@
 <div id="personContatcts" ng-repeat="person in personList">
-    <h3><a href="#!/person/{{person.id}}">{{person.name}} {{person.surname}}</a> contacts:</h3>
+    <h3>
+        <div id="personEditIcons">
+            <a href="#!/person/{{person.id}}/edit"><img src="img/edit_small.png"></a>
+            <a href="#!/person/{{person.id}}/delete"><img src="img/delete_small.png"></a>
+        </div>
+        <a href="#!/person/{{person.id}}">{{person.name}} {{person.surname}}</a> contacts:
+    </h3>
     <table ng-show="person.contacts.length > 0">
         <thead>
         <tr>
+            <th>Actions</th>
             <th>ContactId</th>
             <th>Type</th>
             <th>Value</th>
@@ -10,10 +17,15 @@
         </thead>
         <tbody>
             <tr ng-repeat="contact in person.contacts">
+                <td class="tool_td">
+                    <a href="#!/contact/{{contact.id}}/edit"><img src="img/edit_small.png"></a>
+                    <a href="#!/contact/{{contact.id}}/delete"><img src="img/delete_small.png"></a>
+                </td>
                 <td>{{contact.id}}</td>
                 <td>{{contact.type}}</td>
                 <td>{{contact.value}}</td>
             </tr>
         </tbody>
     </table>
+    <a href="#!/contact/{{person.id}}/add"><img src="img/add_small.png"></a>
 </div>
