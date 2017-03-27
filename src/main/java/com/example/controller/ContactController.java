@@ -45,7 +45,7 @@ class ContactController {
         contactToUpdate.setType(type);
         return contactRepository.saveAndFlush(contactToUpdate);
     }
-    
+
     @RequestMapping(value = "contact/{id}/setValue/{value}", method = RequestMethod.GET)
     public Contact setValue(@PathVariable Long id, @PathVariable String value) {
         Contact contactToUpdate = contactRepository.findOne(id);

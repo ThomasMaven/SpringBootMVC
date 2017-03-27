@@ -1,0 +1,19 @@
+<div id="personContatcts">
+    <h3><a href="#!/person/{{person.id}}">{{person.name}} {{person.surname}}</a> contacts:</h3>
+    <table ng-show="person.contacts.length > 0">
+        <thead>
+        <tr>
+            <th>ContactId</th>
+            <th>Type</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="contact in person.contacts">
+            <td>{{contact.id}}</td>
+            <td>{{contact.type}}</td>
+            <td>{{contact.value}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
