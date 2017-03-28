@@ -4,7 +4,7 @@
 	    var serverURL = "http://127.0.0.1:8888";
 	    var apiPrefix = "/api/v1/";
 	    var personPrefix = "person/";
-	    var contactPrefix = "customer/";
+	    var contactPrefix = "contact/";
 
 	    var personURL = serverURL + apiPrefix + personPrefix;
 	    var contactURL = serverURL + apiPrefix + contactPrefix;
@@ -111,6 +111,6 @@
 		};
 	};
 	
-	var module = angular.module("githubViewer");
+	var module = angular.module("personContacts");
 	module.factory("webservice", webservice);
 }());

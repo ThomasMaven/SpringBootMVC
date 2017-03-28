@@ -1,6 +1,6 @@
 (function() {
 
-    var app = angular.module("githubViewer");
+    var app = angular.module("personContacts");
     var AddContactController = function($scope, webservice, $routeParams, $location) {
 		$scope.addContactSave = function() {
 		    webservice.addContactWS($scope).then(onAddComplete, onError);
