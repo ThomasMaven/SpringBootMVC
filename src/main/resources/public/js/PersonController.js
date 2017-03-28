@@ -7,9 +7,7 @@
 			$scope.person = data;
 		};
 		var onError = function(reason) {
-			$scope.error = "Error fetching user";
-			$scope.user.name = "Not found";
-			$scope.user.surname = "Not found";
+			$scope.error = "Error fetching person. Error status: " + reason.status + " " + status.text;
 		};
 		$scope.id = $routeParams.id;
 		$scope.repoSortOrder = "+name";

@@ -1,7 +1,5 @@
 package com.example.model;
 
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-
 import javax.persistence.*;
 
 /**

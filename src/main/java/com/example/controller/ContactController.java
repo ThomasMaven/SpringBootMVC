@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.model.Contact;
-import com.example.model.Person;
 import com.example.repository.ContactRepository;
 import com.example.repository.PersonRepository;
 import org.springframework.beans.BeanUtils;

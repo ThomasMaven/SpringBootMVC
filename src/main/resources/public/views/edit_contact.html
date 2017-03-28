@@ -1,10 +1,7 @@
 <div>
     <h1>Edit contact.</h1>
-    {{error}}
+    <h1 style="color: red">{{error}}</h1>
     <form name="editContact" ng-submit="editContactSave()">
-        <!--<div class="hiddenField">-->
-            <!--<div>PersonId:</div><input type="text" required="" ng-model="personId" />-->
-        <!--</div>-->
         <div class="form_block">
             <div>Type:</div><input  type="text" required="" ng-model="contact.type" />
         </div>
