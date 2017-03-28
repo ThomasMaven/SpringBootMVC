@@ -1,6 +1,6 @@
 (function() {
 
-	var app = angular.module("githubViewer");
+	var app = angular.module("personContacts");
 
 	var PersonController = function($scope, webservice, $routeParams) {
 		var onPersonComplete = function(data) {

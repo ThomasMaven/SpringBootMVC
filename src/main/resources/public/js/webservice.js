@@ -1,29 +1,37 @@
 (function() {
 	
 	var webservice = function($http) {
+	    var serverURL = "http://127.0.0.1:8888";
+	    var apiPrefix = "/api/v1/";
+	    var personPrefix = "person/";
+	    var contactPrefix = "contact/";
+
+	    var personURL = serverURL + apiPrefix + personPrefix;
+	    var contactURL = serverURL + apiPrefix + contactPrefix;
+
 		var getPersonList = function(user) {
-			return $http.get("http://127.0.0.1:8888/api/v1/person")
+			return $http.get(personURL)
 				.then(function(response){
 					return response.data;
 				});
 
 		};
 		var getPerson = function(id) {
-			return $http.get("http://127.0.0.1:8888/api/v1/person/"+id)
+			return $http.get(personURL + id)
 				.then(function(response){
 					return response.data;
 				});
 
 		};
 		var deleteContact = function(id) {
-			return $http.delete("http://127.0.0.1:8888/api/v1/contact/"+id)
+			return $http.delete(contactURL + id)
 				.then(function(response){
 					return response.data;
 				});
 
 		};
 		var deletePerson = function(id) {
-			return $http.delete("http://127.0.0.1:8888/api/v1/person/"+id)
+			return $http.delete(personURL + id)
 				.then(function(response){
 					return response.data;
 				});
@@ -35,10 +43,8 @@
                     type : scope.type,
                     value : scope.value
             };
-            console.log(scope);
-			return $http.post('http://127.0.0.1:8888/api/v1/person/'+scope.personId+'/addContact', dataObj)
+			return $http.post(personURL + scope.personId + '/addContact', dataObj)
 				.then(function(response){
-				    console.log(response.data);
 					return response.data;
 				});
 
@@ -49,8 +55,7 @@
                     name : scope.name,
                     surname : scope.surname
             };
-            console.log(scope);
-			return $http.post('http://127.0.0.1:8888/api/v1/person', dataObj)
+			return $http.post(personURL, dataObj)
 				.then(function(response){
 					return response.data;
 				});
@@ -58,7 +63,7 @@
 		};
 
         var getContact = function(id) {
-            return $http.get("http://127.0.0.1:8888/api/v1/contact/"+id)
+            return $http.get(contactURL + id)
                 .then(function(response){
                     return response.data;
                 });
@@ -71,21 +76,21 @@
                     type : scope.contact.type,
                     value : scope.contact.value
             };
-			return $http.put('http://127.0.0.1:8888/api/v1/contact/'+scope.contactId, dataObj)
+			return $http.put(contactURL + scope.contactId, dataObj)
 				.then(function(response){
 					return response.data;
 				});
 
 		};
         var setName = function(scope) {
-            return $http.get("http://127.0.0.1:8888/api/v1/person/"+scope.personId+"/setName/"+scope.person.name)
+            return $http.get(personURL + scope.personId+"/setName/" + scope.person.name)
                 .then(function(response){
                     return response.data;
                 });
 
         };
         var setSurname = function(scope) {
-            return $http.get("http://127.0.0.1:8888/api/v1/person/"+scope.personId+"/setSurname/"+scope.person.surname)
+            return $http.get(personURL + scope.personId + "/setSurname/" + scope.person.surname)
                 .then(function(response){
                     return response.data;
                 });
@@ -106,6 +111,6 @@
 		};
 	};
 	
-	var module = angular.module("githubViewer");
+	var module = angular.module("personContacts");
 	module.factory("webservice", webservice);
 }());

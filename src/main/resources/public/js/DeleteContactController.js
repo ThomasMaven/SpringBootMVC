@@ -1,6 +1,6 @@
 (function() {
 
-	var app = angular.module("githubViewer");
+	var app = angular.module("personContacts");
 
 	var DeleteContactController = function($scope, webservice, $routeParams, $location) {
 		var onDeleteComplete = function(data) {

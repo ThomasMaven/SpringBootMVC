@@ -1,6 +1,6 @@
 (function() {
 	
-	var app = angular.module("githubViewer", ["ngRoute"]);
+	var app = angular.module("personContacts", ["ngRoute"]);
 	
 	app.config(function($routeProvider){
 		$routeProvider

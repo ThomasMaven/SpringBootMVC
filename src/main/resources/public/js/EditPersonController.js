@@ -1,6 +1,6 @@
 (function() {
 
-    var app = angular.module("githubViewer");
+    var app = angular.module("personContacts");
     var EditPersonController = function($scope, webservice, $routeParams, $location) {
 		$scope.editPersonSave = function() {
 		    webservice.setName($scope).then(onNameComplete, onError);
