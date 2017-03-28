@@ -1,0 +1,13 @@
+<div>
+    <h1>Edit person.</h1>
+    {{error}}
+    <form name="editPerson" ng-submit="editPersonSave()">
+        <div class="form_block">
+            <div>Name:</div><input  type="text" required="" ng-model="person.name" />
+        </div>
+        <div class="form_block">
+            <div>Surname:</div><input type="text" required="" ng-model="person.surname" />
+        </div>
+        <input type="submit" value="Add" />
+    </form>
+</div>
