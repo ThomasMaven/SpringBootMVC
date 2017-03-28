@@ -77,8 +77,25 @@
 				});
 
 		};
+        var setName = function(scope) {
+            return $http.get("http://127.0.0.1:8888/api/v1/person/"+scope.personId+"/setName/"+scope.person.name)
+                .then(function(response){
+                    return response.data;
+                });
+
+        };
+        var setSurname = function(scope) {
+            return $http.get("http://127.0.0.1:8888/api/v1/person/"+scope.personId+"/setSurname/"+scope.person.surname)
+                .then(function(response){
+                    return response.data;
+                });
+
+        };
+
 		return {
-		    editContactWS : editContactWS ,
+		    setName : setName,
+		    setSurname : setSurname,
+		    editContactWS : editContactWS,
 		    getContact: getContact,
 		    addContactWS: addContactWS,
 		    addPersonWS: addPersonWS,
