@@ -7,7 +7,7 @@
 		};
 
 		var onError = function(reason) {
-			$scope.error = "Error fetching user";
+			$scope.error = "Error updating person. Error status: " + reason.status + " " + status.text;
 		};
 		var onNameComplete = function(reason) {
             webservice.setSurname($scope).then(onUpdateComplete, onError);

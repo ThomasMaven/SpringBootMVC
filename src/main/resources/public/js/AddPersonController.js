@@ -8,7 +8,7 @@
 		};
 
 		var onError = function(reason) {
-			$scope.error = "Error fetching user";
+			$scope.error = "Error adding person. Error status: " + reason.status + " " + status.text;
 		};
 		var onAddComplete = function(reason) {
             $location.path("/person");
