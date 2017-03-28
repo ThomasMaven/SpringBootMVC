@@ -53,4 +53,10 @@ class ContactController {
         return contactRepository.saveAndFlush(contactToUpdate);
     }
 
+    @RequestMapping(value = "contact/{id}", method = RequestMethod.PUT)
+    public Contact updateContact(@PathVariable Long id, @RequestBody Contact contact) {
+        Contact existingContact = contactRepository.findOne(id);
+        BeanUtils.copyProperties(contact, existingContact);
+        return contactRepository.saveAndFlush(existingContact);
+    }
 }

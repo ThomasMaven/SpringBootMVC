@@ -6,6 +6,7 @@
 	<script data-require="angular-route@*" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
 	<link rel="stylesheet" href="css/style.css" />
     <script src="js/app.js"></script>
+    <script src="js/webservice.js"></script>
     <script src="js/PersonController.js"></script>
     <script src="js/PersonListController.js"></script>
     <script src="js/AddPersonController.js"></script>
@@ -14,7 +15,6 @@
     <script src="js/AddContactController.js"></script>
     <script src="js/EditContactController.js"></script>
     <script src="js/DeleteContactController.js"></script>
-    <script src="js/webservice.js"></script>
   </head>
 
     <body>
@@ -23,12 +23,12 @@
         </div>
         <div id="page_content">
             <div id="left_menu">
-                <a href="#!/person">Person List</a>
+                <div class="menu_element"><a href="#!/person">Person List</a></div>
+                <div class="menu_element"><a href="#!/person/add">Add new person</a></div>
             </div>
             <div id="content_box" ng-view></div>
         </div>
     </body>
-
 
 </html>
 
