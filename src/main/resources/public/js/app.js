@@ -8,10 +8,6 @@
 			templateUrl: "views/person.html",
 			controller: "PersonController"
 		})
-		.when("/person/add",{
-			templateUrl: "views/add_person.html",
-			controller: "AddPersonController"
-		})
 		.when("/person/:id/edit",{
 			templateUrl: "views/edit_person.html",
 			controller: "EditPersonController"
@@ -24,10 +20,14 @@
 			templateUrl: "views/personlist.html",
 			controller: "PersonListController"
 		})
-		.when("/contact/:userId/add",{
+		.when("/person/:personId/add",{
 			templateUrl: "views/add_contact.html",
 			controller: "AddContactController"
 		})
+        .when("/person/add/person",{
+            templateUrl: "views/add_person.html",
+            controller: "AddPersonController"
+        })
 		.when("/contact/:id/edit",{
 			templateUrl: "views/edit_contact.html",
 			controller: "EditContactController"
