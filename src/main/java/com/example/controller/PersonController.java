@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.Service.PersonService;
 import com.example.model.Contact;
 import com.example.model.Person;
 import com.example.repository.PersonRepository;
@@ -14,59 +15,48 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("api/v1/")
-class PersonController {
+public class PersonController {
 
     @Autowired
-    private PersonRepository personRepository;
+    private PersonService personService;
 
-    @RequestMapping(value = "person", method = RequestMethod.GET)
+    @GetMapping("person")
     public List<Person> personList() {
-        return personRepository.findAll();
+        return personService.findAll();
     }
 
     @RequestMapping(value = "person", method = RequestMethod.POST)
     public Person createPerson(@RequestBody Person person) {
-
-        return personRepository.saveAndFlush(person);
+        return personService.createPerson(person);
     }
 
     @RequestMapping(value = "person/{id}", method = RequestMethod.GET)
     public Person getPerson(@PathVariable Long id) {
-        return personRepository.findOne(id);
+        return personService.findOne(id);
     }
 
     @RequestMapping(value = "person/{id}", method = RequestMethod.PUT)
-    public Person updateContact(@PathVariable Long id, @RequestBody Person person) {
-        Person existingPerson = personRepository.findOne(id);
-        BeanUtils.copyProperties(person, existingPerson);
-        return personRepository.saveAndFlush(existingPerson);
+    public Person updatePerson(@PathVariable Long id, @RequestBody Person person) {
+        return personService.updatePerson(id, person);
     }
 
     @RequestMapping(value = "person/{id}", method = RequestMethod.DELETE)
     public Person deletePerson(@PathVariable Long id) {
-        Person personToDelete = personRepository.findOne(id);
-        personRepository.delete(personToDelete);
-        return personToDelete;
+        return personService.deletePerson(id);
     }
 
     @RequestMapping(value = "person/{id}/addContact", method = RequestMethod.POST)
     public Person addContact(@PathVariable Long id, @RequestBody Contact contact) {
-        Person personToUpdate = personRepository.findOne(id);
-        personToUpdate.getContacts().add(contact);
-        return personRepository.saveAndFlush(personToUpdate);
+        return personService.addContact(id, contact);
     }
 
     @RequestMapping(value = "person/{id}/setName/{name}", method = RequestMethod.GET)
     public Person setName(@PathVariable Long id, @PathVariable String name) {
-        Person personToUpdate = personRepository.findOne(id);
-        personToUpdate.setName(name);
-        return personRepository.saveAndFlush(personToUpdate);
+        return personService.setName(id, name);
     }
 
     @RequestMapping(value = "person/{id}/setSurname/{surname}", method = RequestMethod.GET)
     public Person setSurname(@PathVariable Long id, @PathVariable String surname) {
-        Person personToUpdate = personRepository.findOne(id);
-        personToUpdate.setSurname(surname);
-        return personRepository.saveAndFlush(personToUpdate);
+        return personService.setSurname(id, surname);
     }
 }

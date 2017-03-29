@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.Service.ContactService;
 import com.example.model.Contact;
 import com.example.repository.ContactRepository;
 import com.example.repository.PersonRepository;
@@ -14,48 +15,38 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("api/v1/")
-class ContactController {
-    @Autowired
-    private ContactRepository contactRepository;
+public class ContactController {
 
     @Autowired
-    private PersonRepository personRepository;
+    private ContactService contactService;
 
-    @RequestMapping(value = "contact", method = RequestMethod.GET)
+    @GetMapping("contact")
     public List<Contact> contactList() {
-        return contactRepository.findAll();
+        return contactService.findAll();
     }
 
-    @RequestMapping(value = "contact/{id}", method = RequestMethod.GET)
+    @GetMapping("contact/{id}")
     public Contact getContact(@PathVariable Long id) {
-        return contactRepository.findOne(id);
+        return contactService.findOne(id);
     }
 
-    @RequestMapping(value = "contact/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("contact/{id}")
     public Contact deleteContact(@PathVariable Long id) {
-        Contact contactToDel = contactRepository.findOne(id);
-        contactRepository.delete(contactToDel);
-        return contactToDel;
+        return contactService.deleteContact(id);
     }
 
-    @RequestMapping(value = "contact/{id}/setType/{type}", method = RequestMethod.GET)
+    @GetMapping("contact/{id}/setType/{type}")
     public Contact setType(@PathVariable Long id, @PathVariable String type) {
-        Contact contactToUpdate = contactRepository.findOne(id);
-        contactToUpdate.setType(type);
-        return contactRepository.saveAndFlush(contactToUpdate);
+         return contactService.setType(id, type);
     }
 
-    @RequestMapping(value = "contact/{id}/setValue/{value}", method = RequestMethod.GET)
+    @GetMapping("contact/{id}/setValue/{value}")
     public Contact setValue(@PathVariable Long id, @PathVariable String value) {
-        Contact contactToUpdate = contactRepository.findOne(id);
-        contactToUpdate.setValue(value);
-        return contactRepository.saveAndFlush(contactToUpdate);
+        return contactService.setType(id, value);
     }
 
-    @RequestMapping(value = "contact/{id}", method = RequestMethod.PUT)
+    @PutMapping("contact/{id}")
     public Contact updateContact(@PathVariable Long id, @RequestBody Contact contact) {
-        Contact existingContact = contactRepository.findOne(id);
-        BeanUtils.copyProperties(contact, existingContact);
-        return contactRepository.saveAndFlush(existingContact);
+        return contactService.updateContact(id, contact);
     }
 }
