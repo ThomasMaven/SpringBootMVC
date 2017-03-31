@@ -1,6 +1,4 @@
-(function() {
-	
-	var app = angular.module("personContacts", ["ngRoute"]);
+var app = angular.module("personContacts", ["ngRoute", "ngResource"]);
 	
 	app.config(function($routeProvider){
 		$routeProvider
@@ -36,7 +34,9 @@
 			templateUrl: "views/person.html",
 			controller: "DeleteContactController"
 		})
+        .when("/test",{
+            templateUrl: "views/test.html",
+            controller: "TestController"
+        })
 		.otherwise({redirectTo:"/person"})
 	});
-
-}());

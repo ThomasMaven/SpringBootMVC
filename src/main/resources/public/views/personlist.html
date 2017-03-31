@@ -1,5 +1,5 @@
 <h1 style="color: red">{{error}}</h1>
-<div id="personContatcts" ng-repeat="person in personList">
+<div id="personContatcts" ng-repeat="person in PersonList">
     <h3>
         <div id="personEditIcons">
             <a href="#!/person/{{person.id}}/edit"><img src="img/edit_small.png"></a>
@@ -17,16 +17,18 @@
         </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="contact in person.contacts">
-                <td class="tool_td">
-                    <a href="#!/contact/{{contact.id}}/edit"><img src="img/edit_small.png"></a>
-                    <a href="#!/contact/{{contact.id}}/delete"><img src="img/delete_small.png"></a>
-                </td>
-                <td>{{contact.id}}</td>
-                <td>{{contact.type}}</td>
-                <td>{{contact.value}}</td>
-            </tr>
+        <tr ng-repeat="contact in person.contacts">
+            <td class="tool_td">
+                <a href="#!/contact/{{contact.id}}/edit"><img src="img/edit_small.png"></a>
+                <a href="#!/contact/{{contact.id}}/delete"><img src="img/delete_small.png"></a>
+            </td>
+            <td>{{contact.id}}</td>
+            <td>{{contact.type}}</td>
+            <td>{{contact.value}}</td>
+        </tr>
         </tbody>
     </table>
     <a href="#!/person/{{person.id}}/add"><img src="img/add_small.png"></a>
 </div>
+
+

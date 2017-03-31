@@ -1,7 +1,7 @@
 <div>
     <h1>Add new contact for {{personId}}.</h1>
     <h1 style="color: red">{{error}}</h1>
-    <form name="addContact" ng-submit="addContactSave()">
+    <form name="addContact" ng-submit="saveContact()">
         <div class="hiddenField">
             <div>PersonId:</div><input type="text" required="" ng-model="personId" />
         </div>
