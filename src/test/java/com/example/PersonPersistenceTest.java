@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * Created by ttomaka on 23.03.2017.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 public class PersonPersistenceTest {
 
     @Autowired

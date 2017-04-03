@@ -16,6 +16,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -45,6 +46,8 @@ public class PersonControllerTest {
         Person per = personController.getPerson(1L);
 
         verify(personService).findOne(1L);
+        //Make sure findAll method is not called.
+        verify(personService, times(0)).findAll();
 
         assertThat(per, equalTo(person));
     }
@@ -75,6 +78,8 @@ public class PersonControllerTest {
         when(personService.findAll()).thenReturn(personList);
 
         List<Person> list = personController.personList();
+
+        verify(personService).findAll();
 
         assertThat(list, equalTo(personList));
     }
