@@ -1,9 +1,8 @@
 package com.example;
 
 import com.example.Service.PersonService;
-import com.example.model.Person;
-import com.example.repository.PersonRepository;
 import com.example.controller.PersonController;
+import com.example.model.Person;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -16,8 +15,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by ttomaka on 28.03.2017.
@@ -45,6 +43,8 @@ public class PersonControllerTest {
         Person per = personController.getPerson(1L);
 
         verify(personService).findOne(1L);
+        //Make sure findAll method is not called.
+        verify(personService, times(0)).findAll();
 
         assertThat(per, equalTo(person));
     }
@@ -75,6 +75,8 @@ public class PersonControllerTest {
         when(personService.findAll()).thenReturn(personList);
 
         List<Person> list = personController.personList();
+
+        verify(personService).findAll();
 
         assertThat(list, equalTo(personList));
     }
