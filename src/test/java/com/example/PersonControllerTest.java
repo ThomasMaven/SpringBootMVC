@@ -1,9 +1,8 @@
 package com.example;
 
 import com.example.Service.PersonService;
-import com.example.model.Person;
-import com.example.repository.PersonRepository;
 import com.example.controller.PersonController;
+import com.example.model.Person;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -16,9 +15,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by ttomaka on 28.03.2017.
